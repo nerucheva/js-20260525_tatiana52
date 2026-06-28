@@ -15,19 +15,12 @@ export function trimSymbols(string, size) {
   }
 
   const arr = string.split("");
-  let count = 1;
 
   return arr.reduce((acc, item, index, array) => {
-    if (item === array[index - 1]) {
-      count = count + 1;
-    } else {
-      count = 1;
-    }
-
-    if (count <= size) {
-      return acc + item;
-    } else {
+    if (acc.endsWith(item.repeat(size))) {
       return acc;
+    } else {
+      return acc + item;
     }
   }, "");
 }
